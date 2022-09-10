@@ -446,6 +446,10 @@ private:
 	void			SetScreenOverlayMaterial(IMaterial *pMaterial) override;
 	IMaterial		*GetScreenOverlayMaterial() override;
 	void			PerformScreenOverlay( int x, int y, int w, int h );
+	void			DrawQuad(IMaterial* pMat, int width, int height);
+	void			DrawQuadOffsetUV(IMaterial* pMat, int width, int height, float du, float dv);
+	void			DrawMainMenuLambda(IMaterial* pMat1, IMaterial* pMat2, int width, int height, float dx, float dy, float aspect);
+//	void			PerformScreenMirrorOverlay(int x, int y, int w, int h);
 
 	void DrawUnderwaterOverlay( void );
 
@@ -491,6 +495,9 @@ private:
 	CMaterialReference	m_ModulateSingleColor;
 	CMaterialReference	m_ScreenOverlayMaterial;
 	CMaterialReference m_UnderWaterOverlayMaterial;
+	CMaterialReference m_ScreenFlipMaterial;
+	CMaterialReference m_CameraFlipMaterial;
+	CMaterialReference m_MenuLambdaOutlineMaterial;
 
 	Vector			m_vecLastFacing;
 	float			m_flCheapWaterStartDistance;

@@ -212,7 +212,7 @@ inline bool C_BaseViewModel::ShouldFlipViewModel()
 	}
 #endif
 
-	return false;
+	return true;
 }
 
 
