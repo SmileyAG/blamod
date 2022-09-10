@@ -1,0 +1,28 @@
+skip_tags: true
+only_commits:
+  files:
+    - appveyor.yml
+    - sp/src/**
+
+image:
+  - Visual Studio 2013
+
+clone_depth: 1
+
+install:
+  - |-
+    mkdir build
+    cd build
+    cmake -G "Visual Studio 12 2013" -T "v120" ..\sp
+    cd %APPVEYOR_BUILD_FOLDER%
+
+build_script:
+  - msbuild build\blamod.sln /p:Configuration=Release;Platform=Win32 /m /v:m /logger:"%PROGRAMFILES%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+after_build:
+  - 7z a hl2-pdb.zip .\build\src\game\client\Release\client.dll .\build\src\game\server\Release\server.dll
+
+test: off
+
+artifacts:
+  - path: hl2-pdb.zip
